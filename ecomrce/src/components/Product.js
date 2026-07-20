@@ -6,10 +6,10 @@ function Product({ product }) {
     <div style={styles.card}>
       <Link to={`/product/${product._id}`}>
         <img
-          src={`http://localhost:8000${product.image}`}
+          src={product.image}
           alt={product.name}
           style={styles.image}
-          onError={(e) => { e.target.src = 'https://via.placeholder.com/200x200?text=No+Image'; }}
+          onError={(e) => { e.target.src = 'https://placehold.co/200x200?text=No+Image'; }}
         />
       </Link>
       <div style={styles.body}>

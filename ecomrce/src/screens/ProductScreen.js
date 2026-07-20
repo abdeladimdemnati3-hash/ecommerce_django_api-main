@@ -31,10 +31,10 @@ function ProductScreen() {
       <Link to="/" style={styles.back}>← Back</Link>
       <div style={styles.grid}>
         <img
-          src={`http://localhost:8000${product.image}`}
+          src={product.image}
           alt={product.name}
           style={styles.image}
-          onError={(e) => { e.target.src = 'https://via.placeholder.com/400x400?text=No+Image'; }}
+          onError={(e) => { e.target.src = 'https://placehold.co/400x400?text=No+Image'; }}
         />
         <div style={styles.info}>
           <h2 style={styles.name}>{product.name}</h2>
