@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useCart } from '../context/CartContext';
 
 function ProductScreen() {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [qty, setQty] = useState(1);
+
+  const handleAddToCart = () => {
+    addToCart(product, qty);
+    navigate('/cart');
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -75,6 +83,7 @@ function ProductScreen() {
               ...(product.countInStock === 0 ? styles.buttonDisabled : {}),
             }}
             disabled={product.countInStock === 0}
+            onClick={handleAddToCart}
           >
             Add to Cart
           </button>
