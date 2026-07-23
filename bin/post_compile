@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Runs during the Python buildpack compile step (after packages installed,
+# after Node buildpack has already built the React app).
+# Files created here are baked into the slug and available to the web dyno.
+set -e
+
+BUILD_DIR=$1
+
+echo "-----> Running collectstatic (bin/post_compile)"
+cd "$BUILD_DIR/backend"
+python manage.py collectstatic --noinput
+echo "-----> collectstatic complete"
