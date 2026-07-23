@@ -132,11 +132,7 @@ _FRONTEND_BUILD_STATIC = BASE_DIR / 'frontend' / 'build' / 'static'
 if _FRONTEND_BUILD_STATIC.exists():
     STATICFILES_DIRS.append(_FRONTEND_BUILD_STATIC)
 
-STORAGES = {
-    'staticfiles': {
-        'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
-    },
-}
+WHITENOISE_USE_FINDERS = True
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'static'
