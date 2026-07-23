@@ -32,45 +32,47 @@ function ProductScreen() {
   }, [id]);
 
   if (loading) return <p style={styles.message}>Loading...</p>;
-  if (error) return <p style={{ ...styles.message, color: 'red' }}>{error}</p>;
+  if (error) return <p style={{ ...styles.message, color: '#dc2626' }}>{error}</p>;
 
   return (
     <div style={styles.container}>
-      <Link to="/" style={styles.back}>← Back</Link>
+      <Link to="/" style={styles.back}>← Back to Products</Link>
       <div style={styles.grid}>
-        <img
-          src={product.image}
-          alt={product.name}
-          style={styles.image}
-          onError={(e) => { e.target.src = 'https://placehold.co/400x400?text=No+Image'; }}
-        />
+        <div style={styles.imageBox}>
+          <img
+            src={product.image}
+            alt={product.name}
+            style={styles.image}
+            onError={(e) => { e.target.src = 'https://placehold.co/400x400?text=No+Image'; }}
+          />
+        </div>
         <div style={styles.info}>
           <h2 style={styles.name}>{product.name}</h2>
+          <div style={styles.divider}></div>
           <div style={styles.rating}>
             {'★'.repeat(Math.round(product.rating))}{'☆'.repeat(5 - Math.round(product.rating))}
-            <span style={styles.reviews}> {product.numReviews} reviews</span>
+            <span style={styles.reviews}>{product.numReviews} reviews</span>
           </div>
-          <p style={styles.price}>Price: <strong>${product.price}</strong></p>
+          <div style={styles.divider}></div>
+          <p style={styles.priceInfo}>Price: <strong style={styles.priceValue}>${product.price}</strong></p>
+          <div style={styles.divider}></div>
+          <p style={styles.descLabel}>Description</p>
           <p style={styles.description}>{product.description}</p>
         </div>
         <div style={styles.card}>
           <div style={styles.cardRow}>
-            <span>Price:</span><span>${product.price}</span>
+            <span>Price</span><strong>${product.price}</strong>
           </div>
           <div style={styles.cardRow}>
-            <span>Status:</span>
-            <span style={{ color: product.countInStock > 0 ? 'green' : 'red' }}>
+            <span>Status</span>
+            <span style={{ color: product.countInStock > 0 ? '#16a34a' : '#dc2626', fontWeight: '600' }}>
               {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
             </span>
           </div>
           {product.countInStock > 0 && (
             <div style={styles.cardRow}>
-              <span>Qty:</span>
-              <select
-                value={qty}
-                onChange={(e) => setQty(Number(e.target.value))}
-                style={styles.select}
-              >
+              <span>Qty</span>
+              <select value={qty} onChange={(e) => setQty(Number(e.target.value))} style={styles.select}>
                 {[...Array(Math.min(product.countInStock, 10)).keys()].map((x) => (
                   <option key={x + 1} value={x + 1}>{x + 1}</option>
                 ))}
@@ -78,14 +80,11 @@ function ProductScreen() {
             </div>
           )}
           <button
-            style={{
-              ...styles.button,
-              ...(product.countInStock === 0 ? styles.buttonDisabled : {}),
-            }}
+            style={{ ...styles.button, ...(product.countInStock === 0 ? styles.buttonDisabled : {}) }}
             disabled={product.countInStock === 0}
             onClick={handleAddToCart}
           >
-            Add to Cart
+            {product.countInStock === 0 ? 'Out of Stock' : 'Add to Cart'}
           </button>
         </div>
       </div>
@@ -94,22 +93,27 @@ function ProductScreen() {
 }
 
 const styles = {
-  container: { maxWidth: '1200px', margin: '0 auto', padding: '20px' },
-  back: { display: 'inline-block', marginBottom: '20px', color: '#007bff', textDecoration: 'none', fontSize: '1rem' },
-  grid: { display: 'grid', gridTemplateColumns: '1fr 1fr 280px', gap: '30px', alignItems: 'start' },
-  image: { width: '100%', borderRadius: '8px', objectFit: 'cover' },
-  info: {},
-  name: { fontSize: '1.6rem', marginBottom: '12px', color: '#333' },
-  rating: { color: '#f0ad4e', fontSize: '1.1rem', marginBottom: '12px' },
-  reviews: { color: '#888', fontSize: '0.9rem' },
-  price: { fontSize: '1.2rem', color: '#555', marginBottom: '12px' },
-  description: { color: '#666', lineHeight: 1.6 },
-  card: { border: '1px solid #ddd', borderRadius: '8px', padding: '20px', backgroundColor: '#fff' },
-  cardRow: { display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid #eee', fontSize: '1rem' },
-  select: { padding: '4px 8px', borderRadius: '4px', border: '1px solid #ccc' },
-  button: { width: '100%', padding: '12px', marginTop: '16px', backgroundColor: '#343a40', color: '#fff', border: 'none', borderRadius: '6px', fontSize: '1rem', cursor: 'pointer' },
-  buttonDisabled: { backgroundColor: '#aaa', cursor: 'not-allowed' },
-  message: { textAlign: 'center', padding: '40px', fontSize: '1.1rem', color: '#666' },
+  container: { maxWidth: '1200px', margin: '0 auto', padding: '28px 24px 64px', background: '#f0f2f5', minHeight: 'calc(100vh - 64px)' },
+  back: { display: 'inline-block', marginBottom: '24px', color: '#3a86ff', textDecoration: 'none', fontSize: '0.88rem', fontWeight: '500' },
+  grid: { display: 'grid', gridTemplateColumns: '1fr 1fr 300px', gap: '32px', alignItems: 'start' },
+  imageBox: { backgroundColor: '#fff', borderRadius: '12px', padding: '28px', boxShadow: '0 1px 3px rgba(0,0,0,0.07), 0 6px 20px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+  image: { width: '100%', borderRadius: '6px', objectFit: 'contain', maxHeight: '380px' },
+  info: { paddingTop: '4px' },
+  name: { fontSize: '1.45rem', margin: '0 0 4px', color: '#1a1a2e', fontWeight: '700', lineHeight: 1.3 },
+  divider: { height: '1px', background: '#e5e7eb', margin: '14px 0' },
+  rating: { color: '#f59e0b', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '6px' },
+  reviews: { color: '#9ca3af', fontSize: '0.85rem', fontWeight: '400' },
+  priceInfo: { margin: 0, fontSize: '1rem', color: '#6b7280' },
+  priceValue: { fontSize: '1.55rem', color: '#1c3557' },
+  descLabel: { margin: '0 0 6px', fontSize: '0.8rem', fontWeight: '600', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '1px' },
+  description: { color: '#4b5563', lineHeight: 1.75, fontSize: '0.93rem', margin: 0 },
+  card: { border: 'none', borderRadius: '12px', padding: '24px', backgroundColor: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.07), 0 6px 20px rgba(0,0,0,0.06)' },
+  cardRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '11px 0', borderBottom: '1px solid #f3f4f6', fontSize: '0.92rem', color: '#4b5563' },
+  select: { padding: '5px 10px', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '0.9rem', color: '#1a1a2e' },
+  button: { width: '100%', padding: '13px', marginTop: '18px', backgroundColor: '#1c3557', color: '#fff', border: 'none', borderRadius: '8px', fontSize: '0.95rem', fontWeight: '600', cursor: 'pointer' },
+  buttonDisabled: { backgroundColor: '#9ca3af', cursor: 'not-allowed' },
+  message: { textAlign: 'center', padding: '60px', fontSize: '1rem', color: '#6b7280' },
 };
 
 export default ProductScreen;
+
