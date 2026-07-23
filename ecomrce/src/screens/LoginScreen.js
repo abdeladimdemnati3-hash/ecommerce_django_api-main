@@ -16,7 +16,7 @@ function LoginScreen() {
     setError('');
     setLoading(true);
     try {
-      const { data } = await axios.post('http://localhost:8000/api/users/login/', {
+      const { data } = await axios.post('/api/users/login/', {
         username,
         password,
       });

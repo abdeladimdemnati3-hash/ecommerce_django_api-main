@@ -24,7 +24,7 @@ function ProfileScreen() {
 
     const fetchOrders = async () => {
       try {
-        const { data } = await axios.get('http://localhost:8000/api/orders/myorders/', {
+        const { data } = await axios.get('/api/orders/myorders/', {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         setOrders(data);
@@ -48,7 +48,7 @@ function ProfileScreen() {
     setSaving(true);
     try {
       const { data } = await axios.put(
-        'http://localhost:8000/api/users/profile/',
+        '/api/users/profile/',
         { username, email, password },
         { headers: { Authorization: `Bearer ${userInfo.token}` } }
       );

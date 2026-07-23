@@ -28,7 +28,7 @@ function RegisterScreen() {
 
     setLoading(true);
     try {
-      const { data } = await axios.post('http://localhost:8000/api/users/register/', {
+      const { data } = await axios.post('/api/users/register/', {
         username,
         email,
         password,

@@ -20,7 +20,7 @@ function ProductScreen() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:8000/api/products/${id}`);
+        const { data } = await axios.get(`/api/products/${id}`);
         setProduct(data);
       } catch (err) {
         setError('Product not found.');

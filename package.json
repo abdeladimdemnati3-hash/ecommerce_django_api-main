@@ -1,0 +1,10 @@
+{
+  "name": "eco-react22",
+  "version": "1.0.0",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "heroku-postbuild": "cd ecomrce && npm install && npm run build && mkdir -p ../backend/frontend/build && cp -a build/. ../backend/frontend/build/"
+  }
+}

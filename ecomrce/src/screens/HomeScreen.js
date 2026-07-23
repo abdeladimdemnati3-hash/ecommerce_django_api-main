@@ -10,7 +10,7 @@ function HomeScreen() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get('http://localhost:8000/api/products/');
+        const { data } = await axios.get('/api/products/');
         setProducts(data);
       } catch (err) {
         setError('Failed to load products. Make sure the backend server is running.');

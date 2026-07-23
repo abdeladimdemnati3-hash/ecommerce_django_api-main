@@ -27,7 +27,7 @@ function PlaceOrderScreen() {
     setError('');
     try {
       const { data } = await axios.post(
-        'http://localhost:8000/api/orders/',
+        '/api/orders/',
         {
           orderItems: cartItems,
           shippingAddress: shipping,
