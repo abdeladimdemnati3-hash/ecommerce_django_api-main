@@ -27,7 +27,7 @@ function Header() {
               <button onClick={handleLogout} style={styles.logoutBtn}>Logout</button>
             </>
           ) : (
-            <Link to="/login" style={styles.navLink}>👤 Login</Link>
+            <Link to="/login" style={styles.navLink}> Login</Link>
           )}
         </nav>
       </div>
