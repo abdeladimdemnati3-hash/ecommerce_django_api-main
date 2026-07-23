@@ -27,16 +27,15 @@ function HomeScreen() {
   return (
     <div style={styles.container}>
       <h1 style={styles.heading}>Latest Products</h1>
-        {products.length === 0 ? (
-          <p style={styles.message}>No products found.</p>
-        ) : (
-          <div style={styles.grid}>
-            {products.map((product) => (
-              <Product key={product._id} product={product} />
-            ))}
-          </div>
-        )}
-      </div>
+      {products.length === 0 ? (
+        <p style={styles.message}>No products found.</p>
+      ) : (
+        <div style={styles.grid}>
+          {products.map((product) => (
+            <Product key={product._id} product={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
