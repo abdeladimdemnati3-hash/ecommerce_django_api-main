@@ -19,11 +19,11 @@ function Header() {
         <Link to="/" style={styles.brand}>ProShop</Link>
         <nav style={styles.nav}>
           <Link to="/cart" style={styles.navLink}>
-            🛒 Cart{cartCount > 0 && <span style={styles.badge}>{cartCount}</span>}
+             Cart{cartCount > 0 && <span style={styles.badge}>{cartCount}</span>}
           </Link>
           {userInfo ? (
             <>
-              <Link to="/profile" style={{ ...styles.navLink, color: '#fff' }}>👤 {userInfo.name || userInfo.username}</Link>
+              <Link to="/profile" style={{ ...styles.navLink, color: '#fff' }}> {userInfo.name || userInfo.username}</Link>
               <button onClick={handleLogout} style={styles.logoutBtn}>Logout</button>
             </>
           ) : (
