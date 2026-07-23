@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 function Product({ product }) {
   return (
     <div style={styles.card}
-      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.12), 0 14px 36px rgba(0,0,0,0.09)'; }}
-      onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.07), 0 6px 20px rgba(0,0,0,0.06)'; }}
+      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.borderColor = '#58a6ff'; }}
+      onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = '#30363d'; }}
     >
       <Link to={`/product/${product._id}`} style={styles.imageWrapper}>
         <img
@@ -35,12 +35,11 @@ function Product({ product }) {
 
 const styles = {
   card: {
-    border: 'none',
+    border: '1px solid #30363d',
     borderRadius: '10px',
     overflow: 'hidden',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.07), 0 6px 20px rgba(0,0,0,0.06)',
-    transition: 'transform 0.22s ease, box-shadow 0.22s ease',
-    backgroundColor: '#fff',
+    transition: 'transform 0.22s ease, border-color 0.2s ease',
+    backgroundColor: '#161b22',
     display: 'flex',
     flexDirection: 'column',
   },
@@ -48,7 +47,7 @@ const styles = {
     display: 'block',
     overflow: 'hidden',
     height: '210px',
-    background: '#f5f7fa',
+    background: '#21262d',
     position: 'relative',
   },
   imageOverlay: { display: 'none' },
@@ -57,35 +56,36 @@ const styles = {
     height: '210px',
     objectFit: 'cover',
     display: 'block',
-    transition: 'transform 0.3s ease',
+    opacity: '0.92',
+    transition: 'opacity 0.2s, transform 0.3s ease',
   },
   body: {
     padding: '16px',
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    gap: '6px',
+    gap: '7px',
   },
   titleLink: {
     textDecoration: 'none',
-    color: '#1a1a2e',
+    color: '#e6edf3',
   },
   title: {
     fontSize: '0.92rem',
     margin: 0,
     fontWeight: '600',
-    color: '#1a1a2e',
+    color: '#e6edf3',
     lineHeight: 1.4,
   },
   rating: {
-    color: '#f59e0b',
+    color: '#e3b341',
     fontSize: '0.88rem',
     display: 'flex',
     alignItems: 'center',
     gap: '5px',
   },
   reviews: {
-    color: '#9ca3af',
+    color: '#8b949e',
     fontSize: '0.76rem',
     fontWeight: '400',
   },
@@ -95,17 +95,17 @@ const styles = {
     alignItems: 'center',
     marginTop: '6px',
     paddingTop: '10px',
-    borderTop: '1px solid #f3f4f6',
+    borderTop: '1px solid #21262d',
   },
   price: {
     fontSize: '1.1rem',
     fontWeight: '700',
-    color: '#1c3557',
+    color: '#58a6ff',
   },
   viewBtn: {
     fontSize: '0.8rem',
     fontWeight: '600',
-    color: '#3a86ff',
+    color: '#8b949e',
     textDecoration: 'none',
   },
 };

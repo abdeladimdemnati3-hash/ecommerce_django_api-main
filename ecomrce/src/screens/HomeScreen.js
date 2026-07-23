@@ -22,10 +22,10 @@ function HomeScreen() {
   }, []);
 
   if (loading) return <p style={styles.message}>Loading products...</p>;
-  if (error) return <p style={{ ...styles.message, color: '#dc2626' }}>{error}</p>;
+  if (error) return <p style={{ ...styles.message, color: '#f85149' }}>{error}</p>;
 
   return (
-    <div>
+    <div style={{ background: '#0d1117', minHeight: 'calc(100vh - 64px)' }}>
       <div style={styles.banner}>
         <p style={styles.bannerEyebrow}>New Arrivals 2024</p>
         <h1 style={styles.bannerTitle}>Welcome to ProShop</h1>
@@ -48,6 +48,65 @@ function HomeScreen() {
     </div>
   );
 }
+
+const styles = {
+  banner: {
+    background: 'linear-gradient(180deg, #161b22 0%, #0d1117 100%)',
+    padding: '72px 24px',
+    textAlign: 'center',
+    borderBottom: '1px solid #21262d',
+  },
+  bannerEyebrow: {
+    color: '#58a6ff',
+    fontWeight: '600',
+    fontSize: '0.76rem',
+    letterSpacing: '3px',
+    textTransform: 'uppercase',
+    margin: '0 0 14px',
+  },
+  bannerTitle: {
+    color: '#e6edf3',
+    fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
+    fontWeight: '700',
+    margin: '0 0 12px',
+    letterSpacing: '-0.5px',
+  },
+  bannerSub: {
+    color: '#8b949e',
+    fontSize: '1rem',
+    margin: 0,
+  },
+  container: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '40px 24px 64px',
+  },
+  sectionHeader: {
+    marginBottom: '20px',
+    borderBottom: '1px solid #21262d',
+    paddingBottom: '12px',
+  },
+  sectionTitle: {
+    fontSize: '1rem',
+    fontWeight: '600',
+    color: '#e6edf3',
+    margin: 0,
+  },
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))',
+    gap: '16px',
+  },
+  message: {
+    textAlign: 'center',
+    padding: '60px',
+    fontSize: '1rem',
+    color: '#8b949e',
+  },
+};
+
+export default HomeScreen;
+
 
 const styles = {
   banner: {
